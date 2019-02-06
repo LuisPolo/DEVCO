@@ -1,0 +1,58 @@
+//Pruebas funcionales
+Cual es la importancia de mapear en codigo ejecutable procesos de negocio.
+La importancia es porque me permite documentar el aplicativo. No es tener 100 archivos de word.
+Las pruebas funcionales generan valor ya que se documenta como funciona el sistema
+Documentacion basado en ejemplos.
+Inicialmente DevOps nacio el 2008 donde fueron las personas de operaciones quienes se encargan de mantener la aplicacion.
+A medida que el numero de test crece va aumentando la complejidad y la mantenibilidad
+/*************Como se prueba funcionalmente*************/
+Selenium> Me abstrae de la implementacion y me permite una interfaz con la que puedo interactuar.
+A selenium no le importa con que lenguaje esta construido. Esta herramienta comenzo a ser usada por personas tecnicas y no tecnicas y esto trajo problemas ya que las personas no tecnicas cometian errores por duplicacion de codigo y falta de uso de patrones.
+Luego partio la necesidad de que se requerian patrones.
+Page Object Model: Es un patron basda en otro patron llamado Page Object (Martin flowler).
+Este patron me dice que debo segregar las paginas de mi automatizaion por una pagina o porcion de la pagina. En la pagina de google seria toda la pagina del buscador. Si hay barras listas u objetos comunes puede crearse algo adicional. En resumen, es una pagina o una porcion de la pagina.
+Una clase con todos los objetos mapeados y de alli otra con todos los metodos de mi test. Antes era solo una clase.
+Luego se le adicionaron mas capas: Steps que tenia los pasos de la interaccion.
+EL problema es que no dejaba de ser dos clases para una aplicaicon completa.
+Selenium me mapea estos elementos especificos del html.
+Se aplico SOLID
+/****Journey Pattern:****/
+Es un patron basado en Page Object.
+Es un patron centrado en el actor. 
+Habilidades: Entra a la pagina con su navegador. Buscar en el filesystem.
+Tareas: Que de ato nivel se necesita para alcanzar un objetivo de negocio. Son representacion de procesos de negocio. Ejemplo en una aplicacion bancaria puede hacer consukta de saldos, transferencia, logueo, etc.
+ask: Vendrian a ser los assertions. Puede realizar preguntas acerca del estado de la aplicacion.
+interacciones: Es que hacer con la interfaz de usuario.
+/*Screenplay es el jar de Journey Pattern**/
+Es el sucesor de PageObject (Anthony Marcado).
+De alli lo implemento Andy Palmer (2009)
+/***Jan Molak 2012**/
+Este le puso el nombre de journey pattern.
+Hasta este momento solo habia practicas no implementacion
+/*John Ferguson Smart 2015*/
+Creo todo esto en el framework Serenity. Me permite realizar una documentacion viva. Framewoork que me permite crear pruebas funcionales con documentacion viva  
+/*********Como construyo mi test********/
+Debe estar basado en como la aplicaicon responde a las necesidades de negocio.
+Journey pattern es la definicion, y screenplay es la implementacion de esta definicion.
+/***Gherkin***/
+Es un lengujae estructurado para que sea facil de aprender para personas no tecnicas. Las herramientas para construir escenarios en lenguaje gherkin ya permite hacerlo en ingles español, etc.
+Lo que se busca es que un usuario de negocio hable el mismo idioma de un tester y desarrollador. Termina siendo un ejemplo de como funciona la aplicaicon. ecesitamos una anotacion. 
+Estos escenarios los deeria hacer un usuario de negocio o PO acompañado de un tester.
+Estructura: GIVEN, WHEN, THEN, END, BUT.
+/*****************BDD*******************/
+BDD (Behaviour driven development)? Se escribe primero un test de caractice que falle. Esto lo hace el tester y a la par el desarrollador construye las pruebas unitarias.
+BDD: Es un proceso para la construccion de sw basada en Escenarios (given when then, end , but)
+TDD: Es un proceso para construir sw basada en Pruebas unitarias
+/****Arquitectura basada en BDD****/
+Feature:
+Steps: Clase java que me mapea todos esos escenarios.
+Tasl: Representaciones de proceso de neogico.
+Interaction: Interaccion directa con la interfaz.
+Question: assertions
+user interface: Page Object.
+Integration: No deberia ir.
+Capa de utilidad transversal. Es opcional
+Capa de modelo: Patron builder. Hace que el codigo se vea divino.
+Exceptions: No pueden faltar. Las excepciones de selenium son horribles. todo es elemento no visible. Defino excepciones particulares que le digan al desarrollador que fallo.
+
+Cucumbur, son herramientas que me permiten apoyar la construnccion de pruebas funcionales con BDD

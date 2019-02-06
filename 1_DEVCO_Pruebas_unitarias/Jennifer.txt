@@ -1,0 +1,147 @@
+﻿Prueba unitaria
+Es una prueba que se hace sobre una unidad de codigo. Puede ser un metodo o una porcion de un metodo.
+Puede haber un metodo con dos if.
+Tiene el alcance mas pequeña
+Son ejecutados en completo aislamiento.
+FIRST.
+No es:
+SI habla con una base de datos
+si se comunica con otros componentes
+Toca el filesystem
+No puede correr al mismo tiempo que otros test unitarios
+Debo hacer cosas especiales a mi ambiente para correrlas.
+Hay que mocker la base de datos porque ya no seria prueba unitaria sino de integracion
+
+Piramide de Testing
+Mike Cohn
+Exploratorio
+End-to-end: Funcional. Son costosas porque se tiene que simular un proceso de negocio.
+Component
+Integration
+Unit: Me da el feedback mas rapido. No debe demorarse mas de 1 segundo.
+Mas bajo de la piramide hay un retorno de inversion mas rapido.
+
+Microservicos: Aca lo principal son las interacciones.
+
+TDD: Es una practica.
+Primero desarrollo la prueba antes del codigo.
+Luego creo el minimo codigo necesario para que funcione.
+Refactorizo
+En una segunda iteracion no puedo dañar el primer caso de prueba.
+Manera de diseñar software dirigido por pruebas.
+
+Gherkin: Given When then
+
+Consideraciones:
+Todos los asset deberian estar relacionando a lo que se esta probando
+Se recomienda usar herencia que baje la complejidad de las pruebas unitarias.
+Todo lo que tengo en mi before deberia aplicar a todo lo que aplica en esa clase.
+No es necesario tener 100% de cobertura de codigo.
+
+Beneficios de aplicar TDD.
+Minimo codigo necesario para lo que la aplicaicon tiene que hacer.
+El codigo nace testeado. Se garantiza una cobertura alta del codigo que se esta construyendo. El codigo fue dirigo por pruebas.
+La garantia esta en la cantida de refactors que hayan.
+
+Assertions:
+Assert es basicamente para verificar comportamiento
+El assertion deberia ser facil de leer y de verificar. Verifica el estado de la unidad de codigo.
+Libreria Hamcrest: Libreria que se encarga de de hacer assertions.
+Fluent interface. PAra tener interfaces fluidas en el codigo.
+Los assertion personalizados me permiten reutilizar codigo (Enviar el link).
+
+Test doubles/replacements
+El arrenge es la fase de preparacion de datos. Aca enra el mockito.
+1) Dummy: 
+2) Stub: Tipo de objeto que representa una clase falsa. Esta clase falsa viene con datos de salida preconfigurados con When Then. Solo necesito que la clase me retorne una cierta cantidad de datos. Tambien uso el objeto mock. When Then
+3) Mock: Sirve para verificar datos. verify. Clase falsa que se examina cuando el test finaliza. Si pongo mock nunca pero nunca entra al metodo.
+4) Spy: Tiene la misma responsabilidad de un mock; sin embargo el objeto si es creado. Siempre entra al metodo.
+
+https://github.com/Devcognitio/PruebasUnitarias.git
+
+Cobertura de codigo
+Es una medicion cuantitativa. Solo me indica la cantida de codigo cubierta en porcentaje.
+Es solo un indicador mas no un asegurador de nada.
+Se trabaja con umbrales. Es muy baja si es menor al 30%.
+mayor al 70% es una cobertura alta.
+
+Reglas de Junit
+una regla permite agregar o modificar el comportamiento de una clase de test. Es una porcion de codigo importante abstraida de nuestor test para ser ejecutada en muchos test. Se ejecuta antes y despues de la ejecucion de las pruebas.
+/*Se encarga de aislar esa prueba para trabajar con el filesystem (Crear carpetas y archivos dentro de estas carpetas)
+Esto va en el Before y ella solita se encarga de eliminar esos archivos*/
+@Rule
+public final TemporaryFolder tempfilder = new TemporaryFolder();
+/*Las excepciones son las reglas mas usadas. Agrego la regla y puedo validar incluso que mensaje traia la excepcion. me permite ver cuando no debe lanzar una excepcion*/
+@Rule
+public final ExpectedException exception = ExpectedException.none();
+/*Sirve para definirle un timeput a la ejecucion de las pruebas. Esta prueba no debe demorarse mas de 2 milisegundos. Si la prueba se demora mas del tiempo especificado la regla fallara*/
+@Rule
+public Timeout timeout = new Timeout(2000);
+
+@test sirve para agregarle parametros al comportamiento de ese test. Aca no tengo control sobre la informacion que llega en esa excepcion
+@Test (expected = INdexoutofboundexception.class)
+public void emptu(){
+new arraylist<object>().get(0)
+}
+
+Tenemos el metodo fail();
+
+/*Excepciones basadas en TDD*/
+
+/********************POWER MOCK*********************/
+Potencia lo que hace mockito ejmp>
+Manejar estaticos. En mock tanto en spy como en mock creas objetos no estaticos.
+
+mockStatic(StaticService.class(when(StaticService.readFile(filename)).thenReturn("Dummy");
+
+verifyStatic(times(1))/*verifica que solo se ejecute una vez*/
+assertThat(value, equealTO("Dummy"));
+
+/***********************EVENT CAPTORS***********************/
+VERIFY: vERIFICAR cuantas veces se llamo a ese metodo. Pero no se traen los parametros con los que se llamo ese metodo.
+ArgumentCaptor: Se le define la clase a la que se le dara el comportamiento.
+Metodo RecordEvent
+//Integer.class
+
+ArgumentCaptor>Integer> salario basicoDiaCaptor = ArgumentCaptoo.forClass(Integer.class)
+int resultado = personaser.calculaSalario )1000-()
+verif0y) personaService).(calcularSalarioMEs(salariobasicoDiaCaptor.capture());
+int salarioMes = salarioBasicoDiaCaptor.getValue
+verify(personaService).calcularsalarioMes(salarioMes)
+
+//Pruebas parametrizados
+Corremos la misma prueba con diferentes datos de entrada sin necesidad de duplicar codigo
+Es un runner diferentes
+Runner JUnitParamsRunner.class
+
+//Respuestas dinamicas
+Es para crear respuestas personalizadas sobre los mocks
+Interfaz dinamica Doanswer: Es una interfaz que hay que implementar con un metodo llamado answer.
+
+//Probando codigo legado
+Codigo que no ha sido creado con pruebas unitarias
+Caracterization test: Unico proposito es documentar que hace la aplicacion.
+Solo se crea para entender que hace el sistema.
+@test
+public void calculadoraDe
+Test smells
+Logs desarrolores no escriben test
+Logica de las pruebas en produccion
+Test lentos en ejecucion
+Pruebas oscuras: Dificiles de entender
+Pruega fragil Cambia su resultado sin todacarla
+Prueba erratica falla sin causa aparente
+/*************Hacer codigo legado mas sostenible
+Entender uqe hacer
+hacerle pruebas
+Pruebas unitarias
+Pruebas de Caracterizacion ??????
+features toogle: Es un flag que se le pone en codigo a produccion. Es complejo de implementar
+
+Devcognito/ServicioBase.git
+
+/********************MAÑANA*****************/
+Vamos a usar para mañana el patron the journey pattern.
+pruebas sobre interfaz de usuario
+youtube
+

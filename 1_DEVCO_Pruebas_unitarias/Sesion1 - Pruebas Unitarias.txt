@@ -1,0 +1,61 @@
+Exploratorio
+End-to-end
+Component
+Integration
+Unit
+
+Mucho esfuerzo
+Pruebas exploratorias
+Test GUI Automatizados:
+An end-to-end test verifies that a system meets external requirements and achieves its goals, testing the entire system, from end to end. 
+Pruebas de integracion: An integration test verifies the communication paths and interactions between components to detect interface defects
+Pruebas unitarias Proporcion alta de abajo hacia arriba: Son principalmente trozos de código diseñados para comprobar que el código principal está funcionando como esperábamos. Pequeños test creados específicamente para cubrir todos los requisitos del código y verificar sus resultados.
+El esfuerzo comienza a subir en la construccion de pruebas
+
+Serenity bdd Herramientas para pruebas visuales
+
+Panal de Pruebas:
+Ya la piramide no es efectiva en los microservicios.
+Cada microservicios expone operaciones a otros microservicios.
+El nivel de pruebas de integracion e smucho mayor a pruebas unitarias o pruebas de interfaz de usuario
+Pruebas de detalle de implementacion: No se espera que sean muchas. Son mas complejas
+Pruebas integradas: Si hago un cambio en mi microservicio estoy afectando otro.
+
+FIRST (Como es una buena)
+Fast
+Independtes
+Repeatable: Se debe repetir siempre.
+Self-validating: autovalidable no depende de la ejecucion de una persona. No debe hacer configuraciones
+Timely (oportuna) Construida lo antes posible.
+
+Hacer las pruebas antes que el codigo exista.
+
+Fases de una prueba unitaria (AAA)
+Arrange: Preparacion de datos. Siempre tener la misma estructura (Crear objetos mocks, etc) Tener la prueba aislada para que se ejecute solita
+Act: Aca ejecuto lo que yo quiero probar. Ejecucion con datos de entrada.
+Assert: Le pregunto al sistema por ese estado
+
+Escenarios
+test_nombrequeexpliquequehace: No es un metodo. Deberia decir especificamente el escenario a probar
+Usar tecnica GIven Then When (dado que estoy haciendo algo cuando ejecuto una accion deberia haber un resultado=
+
+Consideraciones:
+Todos los asset deberian estar relacionando a lo que se esta probando
+Se recomienda usar herencia que baje la complejidad de las pruebas unitarias.
+Todo lo que tengo en mi before deberia aplicar a todo lo que aplica en esa clase.
+No es necesario tener 100% de cobertura de codigo.
+
+TDD
+Es una manera de diseñar software no de probarlo.
+El codigo esta tan granular que solo tiene lo que se necesita. No implica mucho refactor.
+Ciclo:
+Construyo elk test 
+Fallo
+Hago la minima funcionalidad posible para que ese test pase y el usuario este contento.
+Refactorizo
+Como diseño la prueba para que el codigo este correctamente cubierto
+No pensar en como diseño el codigo para que la prueba pase.
+Spring runner. Realizar la ejecucion del suite de test
+
+
+

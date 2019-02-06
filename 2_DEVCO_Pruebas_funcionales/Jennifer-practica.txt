@@ -1,0 +1,23 @@
+/******PRACTICA*****/
+paTRON bUILDER: REVISAR
+Driver de que me permita interactuar con el navegador.
+chrome tiene su propio driver
+Serenity: Tiene un archivo de propiedades para configurarlo.
+Serenity Properties. Como va  estar construida la documentacion viva. Que driver uso. Que navegador uso.
+en caso de automatizaciones para moviles le digo el uid del dispositivo, etc.
+En las pruebas funcionales es importante las pryuebas de las evidencias. Screenshots, videos.
+plugin:
+Serenitu agreegator, me permite agregar todos mis archivos en un html.
+Pruebas unitarias, pruebas integrales 
+En Los features van a estar los guven when then
+Runner: punto de partida que me permite correr las pruebas. Los corro a traves de un runner.
+Por cada feature yo deberia tener un runner.
+StepDefinition: Mapeo de los features.
+Documentacion viva. Tiene todo lo que fue ejecutado. Cada vez que se ejecuta la prueba, corre.
+Builder, me permite construir codigo mas bonito.
+Screenplay recibe su nombre, porque se simula una escena y la escena es que cada obra va a ser una accion realizada por el usuario.
+Las tareas son tipos de objeto performable, ya que son cosas que ejecuta un usuario.
+
+//click a la grilla
+
+XPATH: Este es el camino que sigue para poder llegar a un elemento.
